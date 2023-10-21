@@ -1,0 +1,26 @@
+<table class="table table-hover my-0">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th class="d-none d-xl-table-cell">Start Date</th>
+            <th class="d-none d-xl-table-cell">End Date</th>
+            <th>Status</th>
+            <th class="d-none d-md-table-cell">Mentor</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of userList;">
+            <td><a routerLink="{{'user/' + user.id}}">{{user.name}}</a></td>
+            <td class="d-none d-xl-table-cell">{{user.startDate}}</td>
+            <td class="d-none d-xl-table-cell">{{user.endDate}}</td>
+            <td><span
+                    [ngClass]="user.status === 'Completed' ? 'badge bg-success' : user.status === 'Cancelled' ? 'badge bg-danger' : 'badge bg-warning'">{{user.status}}</span>
+            </td>
+            <td class="d-none d-md-table-cell">{{user.mentor}}</td>
+            <td><i routerLink="/edit" (click)="editUser(user)" class="align-middle" data-feather="edit"></i></td>
+            <td><i class="align-middle" data-feather="trash"></i></td>
+        </tr>
+    </tbody>
+</table>
+
+<button class="btn btn-primary mt-3" (click)="addUser({name: 'Steve Aoki', id: 7})">Add User</button>
